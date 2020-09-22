@@ -26,8 +26,10 @@ def convert_to_json(input_file_path: str, output_file_path: str) -> None:
 
 def convert_to_csv(input_file_path: str, output_file_path: str) -> None:
     data = xml_to_list(input_file_path)
-    for date, temp in data:
-        print(f'Date: {date} Temp: {temp}')
+    with open(output_file_path, 'w', newline='') as output_file:
+        for date, temp in data:
+                csv_writer = csv.writer(output_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                csv_writer.writerow([date, temp])
 
 def xml_to_list(input_file_path: str) -> list:
     try:
