@@ -1,5 +1,7 @@
 import argparse
 import xml.etree.ElementTree as ET
+import json
+import csv
 
 def main() -> None:
     parser = argparse.ArgumentParser(description='Convert a XML data file into a JSON or CSV file.')
@@ -15,11 +17,17 @@ def main() -> None:
 
 def convert_to_json(input_file_path: str, output_file_path: str) -> None:
     data = xml_to_list(input_file_path)
-    print(data)
+    json_dict = {}
+    json_dict['data'] = []
+    for date, temp in data:
+        json_dict['data'].append([date, float(temp)])
+    with open(output_file_path, 'w') as output_file:
+        json.dump(json_dict, output_file)
 
 def convert_to_csv(input_file_path: str, output_file_path: str) -> None:
     data = xml_to_list(input_file_path)
-    csv_to_dict(input_file_path)
+    for date, temp in data:
+        print(f'Date: {date} Temp: {temp}')
 
 def xml_to_list(input_file_path: str) -> list:
     try:
