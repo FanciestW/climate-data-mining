@@ -1,4 +1,5 @@
 import argparse
+import xml.etree.ElementTree as ET
 
 def main() -> None:
     parser = argparse.ArgumentParser(description='Convert a XML data file into a JSON or CSV file.')
@@ -13,10 +14,26 @@ def main() -> None:
         convert_to_json(args.input, args.output)
 
 def convert_to_json(input_file_path: str, output_file_path: str) -> None:
-    pass
+    data = xml_to_list(input_file_path)
+    print(data)
 
 def convert_to_csv(input_file_path: str, output_file_path: str) -> None:
-    pass
+    data = xml_to_list(input_file_path)
+    csv_to_dict(input_file_path)
+
+def xml_to_list(input_file_path: str) -> list:
+    try:
+        data_list = list()
+        root = ET.parse(input_file_path).getroot()
+        for data in root.findall('data'):
+            year = data.find('year').text
+            temp_degree_c = data.find('value').text
+            data_list.append((year, temp_degree_c))
+        return data_list
+    except:
+        print('Error: unable to parse data from input XML file.')
+        exit(-1)
+        
 
 if __name__ == '__main__':
     main()
