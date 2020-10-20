@@ -9,7 +9,7 @@ with open('./data/data.csv') as data_file:
     csv_reader = csv.reader(data_file, delimiter=',')
     for row in csv_reader:
         date.append(row[0])
-        temp.append(row[1])
+        temp.append(float(row[1]))
 
 print('Done Parsing Data')
 
