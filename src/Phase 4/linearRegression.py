@@ -1,11 +1,11 @@
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
-import numpy as np;
-import matplotlib;
-import matplotlib.pyplot as plt;
-import sklearn as skl;
-from sklearn.linear_model import LinearRegression;
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import sklearn as skl
+from sklearn.linear_model import LinearRegression
 
 # %%
 import csv
