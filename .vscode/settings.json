@@ -1,4 +1,3 @@
 {
-    "python.dataScience.jupyterServerURI": "local",
-    "python.pythonPath": "d:\\Documents\\GitHub\\climate-data-mining\\env\\Scripts\\python.exe"
+    "python.dataScience.jupyterServerURI": "local"
 }
